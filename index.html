@@ -1,247 +1,548 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Penumbra Filosófica</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Penumbra Filosófica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
+    :root {
+      --bg:        #0d0b14;
+      --surface:   #131020;
+      --card:      #1a1628;
+      --border:    rgba(160, 100, 220, 0.25);
+      --accent:    #b06aff;
+      --accent2:   #e080ff;
+      --text:      #ddd0ee;
+      --muted:     #8a7aaa;
+      --glow:      rgba(176, 106, 255, 0.55);
+    }
 
-body{
-margin:0;
-font-family:Arial, sans-serif;
-background:black;
-color:white;
-}
+    html { scroll-behavior: smooth; }
 
-.hero{
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-height:70vh;
+    /* ── GRAIN OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: .45;
+    }
 
-background:
-linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
-url("fondo.png");
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px 40px;
+      overflow: hidden;
+    }
 
-background-size:cover;
-background-position:center;
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(110,40,180,0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(60,0,120,0.35) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 70%, rgba(80,10,140,0.3) 0%, transparent 60%),
+        linear-gradient(180deg, #0a0814 0%, #130e20 50%, #0d0b14 100%);
+    }
 
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-text-align:center;
-}
+    /* City silhouette via box-shadow columns */
+    .hero-city {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background:
+        repeating-linear-gradient(90deg,
+          transparent 0px, transparent 12px,
+          rgba(30,15,55,0.9) 12px, rgba(30,15,55,0.9) 22px,
+          transparent 22px, transparent 30px,
+          rgba(20,10,45,0.85) 30px, rgba(20,10,45,0.85) 45px,
+          transparent 45px, transparent 55px,
+          rgba(25,12,50,0.9) 55px, rgba(25,12,50,0.9) 72px,
+          transparent 72px, transparent 80px,
+          rgba(18,8,38,0.8) 80px, rgba(18,8,38,0.8) 90px
+        );
+      mask-image: linear-gradient(to top, black 0%, black 30%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to top, black 0%, black 30%, transparent 100%);
+      opacity: .55;
+    }
 
-.hero h1{
+    /* Light beams */
+    .hero::after {
+      content: '';
+      position: absolute; top: 0; left: 50%;
+      width: 2px; height: 60%;
+      background: linear-gradient(to bottom, var(--accent2), transparent);
+      transform: translateX(-50%);
+      filter: blur(3px);
+      opacity: .5;
+    }
 
-font-size:60px;
-letter-spacing:6px;
-color:#d8b4fe;
+    .beam {
+      position: absolute; top: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, rgba(200,140,255,0.8), transparent);
+      filter: blur(2px);
+    }
+    .beam:nth-child(1) { left: 22%; height: 45%; opacity: .4; }
+    .beam:nth-child(2) { left: 35%; height: 55%; opacity: .3; }
+    .beam:nth-child(3) { left: 63%; height: 50%; opacity: .35; }
+    .beam:nth-child(4) { left: 78%; height: 40%; opacity: .3; }
+    .beam:nth-child(5) { left: 15%; height: 35%; opacity: .25; width: 2px; }
 
-text-shadow:
-0 0 10px #c084fc,
-0 0 20px #a855f7,
-0 0 40px #7e22ce;
+    .hero-content { position: relative; z-index: 2; text-align: center; }
 
-}
+    h1.site-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.4rem, 7vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: .18em;
+      color: #fff;
+      text-shadow:
+        0 0 20px var(--glow),
+        0 0 60px rgba(176,106,255,0.4),
+        0 0 120px rgba(176,106,255,0.2);
+      margin-bottom: 14px;
+      animation: fadeDown .9s ease both;
+    }
 
-.hero p{
+    .site-tagline {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--accent);
+      letter-spacing: .06em;
+      opacity: .85;
+      animation: fadeDown .9s .2s ease both;
+    }
 
-font-style:italic;
-font-size:20px;
-margin-top:10px;
-color:#f5d0fe;
+    /* ── NAV ── */
+    nav {
+      position: relative; z-index: 10;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 18px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(13,11,20,0.85);
+      backdrop-filter: blur(8px);
+      animation: fadeDown .9s .4s ease both;
+    }
 
-}
+    nav a {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 400;
+      font-size: .95rem;
+      letter-spacing: .12em;
+      color: var(--text);
+      text-decoration: none;
+      padding: 6px 36px;
+      position: relative;
+      transition: color .25s;
+    }
+    nav a + a { border-left: 1px solid var(--border); }
+    nav a:hover { color: var(--accent2); }
+    nav a::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 50%;
+      width: 0; height: 1px;
+      background: var(--accent2);
+      transition: width .3s, left .3s;
+    }
+    nav a:hover::after { width: 60%; left: 20%; }
 
-nav{
+    /* ── MAIN LAYOUT ── */
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 52px 24px 80px;
+    }
 
-margin-top:40px;
+    /* ── TWO-COL ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      margin-bottom: 64px;
+      animation: fadeUp .8s .5s ease both;
+    }
 
-}
+    @media (max-width: 680px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
 
-nav a{
+    /* ── SECTION HEADING ── */
+    .section-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--accent);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
 
-color:#c084fc;
-text-decoration:none;
-margin:20px;
-font-size:18px;
+    /* ── CARDS ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 22px 22px 18px;
+      margin-bottom: 16px;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .card:last-child { margin-bottom: 0; }
+    .card:hover {
+      border-color: rgba(160,100,220,0.55);
+      box-shadow: 0 0 24px rgba(160,100,220,0.12);
+    }
 
-}
+    .card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #f0e8ff;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
 
-nav a:hover{
+    .card-desc {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: .95rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+      line-height: 1.55;
+    }
 
-text-shadow:0 0 10px #a855f7;
+    .btn-link {
+      display: inline-block;
+      font-family: 'Raleway', sans-serif;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 6px 16px;
+      border-radius: 2px;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+    .btn-link:hover {
+      background: rgba(160,100,220,0.15);
+      border-color: var(--accent);
+      color: var(--accent2);
+    }
 
-}
+    /* ── CUADERNOS LIST ── */
+    .cuadernos-list { display: flex; flex-direction: column; gap: 0; }
 
-section{
+    .cuaderno-item {
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      background: var(--card);
+      transition: background .2s;
+      cursor: pointer;
+    }
+    .cuaderno-item:first-child { border-radius: 4px 4px 0 0; }
+    .cuaderno-item:last-child  { border-bottom: 1px solid var(--border); border-radius: 0 0 4px 4px; }
+    .cuaderno-item:hover { background: rgba(40,28,68,0.9); }
 
-max-width:1000px;
-margin:auto;
-padding:60px 20px;
+    .cuaderno-title {
+      font-family: 'Cinzel', serif;
+      font-size: .95rem;
+      font-weight: 600;
+      color: #e8d8ff;
+      margin-bottom: 3px;
+    }
+    .cuaderno-meta {
+      font-size: .78rem;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
 
-}
+    /* ── FILOSOFIA Y FICCION ── */
+    .ficcion-section {
+      animation: fadeUp .8s .7s ease both;
+    }
 
-h2{
+    .ficcion-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .ficcion-heading::before,
+    .ficcion-heading::after {
+      content: '';
+      position: absolute; top: 50%;
+      width: 28%; height: 1px;
+      background: var(--border);
+    }
+    .ficcion-heading::before { left: 0; }
+    .ficcion-heading::after  { right: 0; }
 
-border-bottom:1px solid #7e22ce;
-padding-bottom:10px;
-color:#c084fc;
+    .ficcion-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--card);
+      transition: box-shadow .3s;
+    }
+    .ficcion-card:hover {
+      box-shadow: 0 0 48px rgba(160,100,220,0.2);
+    }
 
-}
+    .ficcion-card-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 40%, rgba(100,30,160,0.5), transparent 70%),
+        radial-gradient(ellipse 80% 80% at 30% 70%, rgba(60,10,110,0.4), transparent 65%),
+        linear-gradient(180deg, #1a0d30 0%, #0d0820 100%);
+    }
 
-.grid{
+    /* Iron Throne SVG-ish silhouette via CSS */
+    .throne-silhouette {
+      position: absolute;
+      bottom: 60px; left: 50%;
+      transform: translateX(-50%);
+      width: 260px; height: 200px;
+      opacity: .55;
+    }
 
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:30px;
+    .throne-silhouette svg { width: 100%; height: 100%; }
 
-}
+    .ficcion-header {
+      position: relative; z-index: 2;
+      padding: 28px 28px 0;
+    }
+    .ficcion-card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #f4ecff;
+      margin-bottom: 6px;
+    }
+    .ficcion-card-desc {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: .97rem;
+      color: var(--muted);
+    }
 
-.card{
+    .ficcion-footer {
+      position: relative; z-index: 2;
+      padding: 0 28px 28px;
+      display: flex;
+      justify-content: center;
+    }
+    .btn-ficcion {
+      display: inline-block;
+      font-family: 'Raleway', sans-serif;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--text);
+      text-decoration: none;
+      background: rgba(15,10,30,0.85);
+      border: 1px solid rgba(160,100,220,0.45);
+      padding: 11px 36px;
+      border-radius: 3px;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+    .btn-ficcion:hover {
+      background: rgba(100,50,180,0.25);
+      border-color: var(--accent);
+      color: var(--accent2);
+    }
 
-border:1px solid #7e22ce;
-padding:20px;
-background:#0a0114;
+    /* ── GLOW DOTS (decorative) ── */
+    .glow-dot {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
 
-}
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-.card h3{
-
-margin-top:0;
-
-}
-
-button{
-
-background:transparent;
-border:1px solid #c084fc;
-color:#c084fc;
-padding:8px 14px;
-margin-top:10px;
-cursor:pointer;
-
-}
-
-button:hover{
-
-background:#7e22ce;
-
-}
-
-.sobre{
-
-max-width:700px;
-
-}
-
-footer{
-
-text-align:center;
-padding:40px;
-color:#a78bfa;
-
-}
-
-</style>
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 28px;
+      font-size: .78rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      letter-spacing: .06em;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="hero">
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-city"></div>
+  <div class="beam"></div><div class="beam"></div><div class="beam"></div>
+  <div class="beam"></div><div class="beam"></div>
 
-<h1>PENUMBRA FILOSÓFICA</h1>
+  <!-- decorative glow dots -->
+  <div class="glow-dot" style="width:4px;height:4px;background:#e0aaff;top:18%;left:22%;box-shadow:0 0 8px 4px #b06aff;opacity:.7;"></div>
+  <div class="glow-dot" style="width:3px;height:3px;background:#ffccff;top:28%;left:76%;box-shadow:0 0 6px 3px #cc80ff;opacity:.6;"></div>
+  <div class="glow-dot" style="width:5px;height:5px;background:#d080ff;top:12%;left:55%;box-shadow:0 0 10px 5px #9040d0;opacity:.5;"></div>
 
-<p>escribir filosofía es explorar las penumbras</p>
+  <div class="hero-content">
+    <h1 class="site-title">PENUMBRA FILOSÓFICA</h1>
+    <p class="site-tagline">— escribir filosofía es explorar las penumbras —</p>
+  </div>
+</header>
 
+<!-- ── NAV ── -->
 <nav>
-
-<a href="#ensayos">Ensayos</a>
-<a href="#cuadernos">Cuadernos</a>
-<a href="#sobre">Sobre mí</a>
-
+  <a href="#ensayos">Ensayos</a>
+  <a href="#cuadernos">Cuadernos</a>
+  <a href="#sobre">Sobre mí</a>
 </nav>
 
-</div>
+<!-- ── MAIN ── -->
+<main>
 
-<section id="ensayos">
+  <!-- Two-column: Ensayos + Cuadernos -->
+  <div class="two-col">
 
-<h2>Ensayos recientes</h2>
+    <!-- Ensayos Recientes -->
+    <div id="ensayos">
+      <h2 class="section-heading">Ensayos Recientes</h2>
 
-<div class="grid">
+      <div class="card">
+        <div class="card-title">Realismo estructural y disposicionalismo</div>
+        <p class="card-desc">Un análisis del debate sobre la ontología de las propiedades.</p>
+        <a href="#" class="btn-link">Leer ensayo →</a>
+      </div>
 
-<div class="card">
+      <div class="card">
+        <div class="card-title">El problema del sustrato categórico</div>
+        <p class="card-desc">Notas sobre Bird y Chakravartty.</p>
+        <a href="#" class="btn-link">Leer ensayo →</a>
+      </div>
+    </div>
 
-<h3>Realismo estructural y disposicionalismo</h3>
+    <!-- Cuadernos -->
+    <div id="cuadernos">
+      <h2 class="section-heading">Cuadernos</h2>
 
-<p>Un análisis del debate sobre la ontología de las propiedades.</p>
+      <div class="cuadernos-list">
+        <div class="cuaderno-item">
+          <div class="cuaderno-title">Notas sobre Merleau-Ponty</div>
+          <div class="cuaderno-meta">Fragmento — 3 min lectura</div>
+        </div>
+        <div class="cuaderno-item">
+          <div class="cuaderno-title">Pensar con el cuerpo</div>
+          <div class="cuaderno-meta">Fragmento — 2 min lectura</div>
+        </div>
+        <div class="cuaderno-item">
+          <div class="cuaderno-title">Apunte sobre poderes causales</div>
+          <div class="cuaderno-meta">Fragmento — 2 min lectura</div>
+        </div>
+      </div>
+    </div>
 
-<button>Leer ensayo</button>
+  </div><!-- /two-col -->
 
-</div>
+  <!-- Filosofía y Ficción -->
+  <div class="ficcion-section">
+    <h2 class="ficcion-heading">Filosofía y Ficción</h2>
 
-<div class="card">
+    <div class="ficcion-card">
+      <div class="ficcion-card-bg"></div>
 
-<h3>El problema del sustrato categórico</h3>
+      <!-- Iron Throne silhouette in CSS/SVG -->
+      <div class="throne-silhouette">
+        <svg viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Spikes -->
+          <g fill="rgba(80,30,120,0.75)">
+            <polygon points="130,10 122,80 138,80"/>
+            <polygon points="110,18 108,82 120,82"/>
+            <polygon points="150,18 140,82 152,82"/>
+            <polygon points="92,30 94,84 104,84"/>
+            <polygon points="168,30 156,84 166,84"/>
+            <polygon points="78,45 82,86 92,86"/>
+            <polygon points="182,45 168,86 178,86"/>
+            <polygon points="65,55 72,88 80,88"/>
+            <polygon points="195,55 180,88 188,88"/>
+          </g>
+          <!-- Throne body -->
+          <path d="M60 86 Q80 78 130 76 Q180 78 200 86 L190 160 Q130 175 70 160 Z"
+                fill="rgba(50,20,90,0.85)"/>
+          <!-- seat detail -->
+          <path d="M80 110 Q130 100 180 110 L175 140 Q130 150 85 140 Z"
+                fill="rgba(70,30,110,0.6)"/>
+          <!-- base -->
+          <path d="M70 158 Q130 168 190 158 L200 185 Q130 196 60 185 Z"
+                fill="rgba(40,15,75,0.9)"/>
+          <!-- glow beneath throne -->
+          <ellipse cx="130" cy="188" rx="80" ry="8" fill="rgba(130,50,200,0.3)" filter="url(#glow)"/>
+          <defs>
+            <filter id="glow" x="-50%" y="-200%" width="200%" height="500%">
+              <feGaussianBlur stdDeviation="6"/>
+            </filter>
+          </defs>
+        </svg>
+      </div>
 
-<p>Notas sobre Bird y Chakravartty.</p>
+      <!-- purple mist glow behind throne -->
+      <div style="position:absolute;bottom:40px;left:50%;transform:translateX(-50%);width:300px;height:120px;background:radial-gradient(ellipse,rgba(140,50,220,0.35),transparent 70%);pointer-events:none;"></div>
 
-<button>Leer ensayo</button>
+      <div class="ficcion-header">
+        <div class="ficcion-card-title">Soberanía en "Game of Thrones"</div>
+        <div class="ficcion-card-desc">Legitimidad y poder en Westeros.</div>
+      </div>
 
-</div>
+      <div class="ficcion-footer">
+        <a href="#" class="btn-ficcion">Leer artículo →</a>
+      </div>
+    </div>
+  </div>
 
-</div>
+</main>
 
-</section>
-
-<section id="cuadernos">
-
-<h2>Cuadernos</h2>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>Notas sobre Merleau-Ponty</h3>
-
-<p>Fragmento — 3 min lectura</p>
-
-</div>
-
-<div class="card">
-
-<h3>Pensar con el cuerpo</h3>
-
-<p>Fragmento — 2 min lectura</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="sobre" class="sobre">
-
-<h2>Sobre mí</h2>
-
-<p>
-
-Gastón Fernández — estudiante de Licenciatura en Filosofía.
-
-</p>
-
-<p>
-
-Contacto: gastonfernandezfilo@gmail.com
-
-</p>
-
-</section>
-
-<footer>
-
-Penumbra Filosófica
-
+<footer id="sobre">
+  Penumbra Filosófica &nbsp;·&nbsp; escribir filosofía es explorar las penumbras
 </footer>
 
 </body>
