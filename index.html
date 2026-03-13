@@ -401,6 +401,80 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* ── SOBRE MÍ ── */
+    .sobre-section {
+      margin-top: 64px;
+      animation: fadeUp .8s .9s ease both;
+    }
+
+    .sobre-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--card);
+      padding: 40px 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sobre-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 150px;
+      background: radial-gradient(ellipse, rgba(130,50,210,0.2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .sobre-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #f0e8ff;
+      letter-spacing: .1em;
+    }
+
+    .sobre-divider {
+      width: 60px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent), transparent);
+    }
+
+    .sobre-desc {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .sobre-mail {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Raleway', sans-serif;
+      font-size: .88rem;
+      letter-spacing: .07em;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 9px 22px;
+      border-radius: 3px;
+      margin-top: 4px;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+    .sobre-mail:hover {
+      background: rgba(160,100,220,0.12);
+      border-color: var(--accent);
+      color: var(--accent2);
+    }
+    .sobre-mail svg { opacity: .7; }
+
     /* ── FOOTER ── */
     footer {
       text-align: center;
@@ -452,13 +526,13 @@
       <div class="card">
         <div class="card-title">Realismo estructural y disposicionalismo</div>
         <p class="card-desc">Un análisis del debate sobre la ontología de las propiedades.</p>
-        <a href="https://drive.google.com/file/d/11rV7YeV_ExsPSeKSASoEeIG_XaXX5p9D/view?usp=drivesdk" class="btn-link">Leer ensayo →</a>
+        <a href="#" class="btn-link">Leer ensayo →</a>
       </div>
 
       <div class="card">
         <div class="card-title">El problema del sustrato categórico</div>
         <p class="card-desc">Notas sobre Bird y Chakravartty.</p>
-        <a href="https://drive.google.com/file/d/11rV7YeV_ExsPSeKSASoEeIG_XaXX5p9D/view?usp=drivesdk" class="btn-link">Leer ensayo →</a>
+        <a href="#" class="btn-link">Leer ensayo →</a>
       </div>
     </div>
 
@@ -539,9 +613,28 @@
     </div>
   </div>
 
+  <!-- Sobre mí -->
+  <div class="sobre-section" id="sobre">
+    <h2 class="ficcion-heading">Sobre mí</h2>
+    <div class="sobre-card">
+      <div class="sobre-name">Gastón Fernández</div>
+      <div class="sobre-divider"></div>
+      <p class="sobre-desc">
+        Filósofo en las penumbras. Escribo sobre metafísica, ontología y los bordes donde la filosofía se encuentra con la ficción.
+      </p>
+      <a href="mailto:penumbrafilosofica@gmail.com" class="sobre-mail">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <polyline points="2,4 12,13 22,4"/>
+        </svg>
+        penumbrafilosofica@gmail.com
+      </a>
+    </div>
+  </div>
+
 </main>
 
-<footer id="sobre">
+<footer>
   Penumbra Filosófica &nbsp;·&nbsp; escribir filosofía es explorar las penumbras
 </footer>
 
