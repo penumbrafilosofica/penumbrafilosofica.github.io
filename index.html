@@ -1,150 +1,248 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Penumbra Filosófica</title><style>
+<title>Penumbra Filosófica</title>
+
+<style>
 
 body{
 margin:0;
-font-family: "Segoe UI", Arial, sans-serif;
-background:#05010a;
-color:#e7d6ff;
+font-family:Arial, sans-serif;
+background:black;
+color:white;
 }
 
 .hero{
+
 height:70vh;
-background:linear-gradient(rgba(5,1,10,0.75),rgba(5,1,10,0.95)),
-radial-gradient(circle at center,#5a1aff33,transparent 70%);
+
+background:
+linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+url("fondo.jpg");
+
+background-size:cover;
+background-position:center;
+
 display:flex;
 flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
-border-bottom:1px solid #7a2cff;
 }
 
 .hero h1{
+
 font-size:60px;
 letter-spacing:6px;
-color:#d1a3ff;
-text-shadow:0 0 15px #a855f7,0 0 30px #7e22ce;
-margin:0;
+color:#d8b4fe;
+
+text-shadow:
+0 0 10px #c084fc,
+0 0 20px #a855f7,
+0 0 40px #7e22ce;
+
 }
 
 .hero p{
-margin-top:20px;
-font-size:20px;
+
 font-style:italic;
-color:#e9d5ff;
-text-shadow:0 0 10px #9333ea;
+font-size:20px;
+margin-top:10px;
+color:#f5d0fe;
+
 }
 
 nav{
+
 margin-top:40px;
+
 }
 
 nav a{
+
 color:#c084fc;
-margin:0 20px;
 text-decoration:none;
+margin:20px;
 font-size:18px;
-letter-spacing:1px;
+
 }
 
 nav a:hover{
-color:white;
+
 text-shadow:0 0 10px #a855f7;
+
 }
 
 section{
+
 max-width:1000px;
 margin:auto;
 padding:60px 20px;
+
 }
 
 h2{
-color:#c084fc;
-letter-spacing:2px;
-border-bottom:1px solid #6b21a8;
+
+border-bottom:1px solid #7e22ce;
 padding-bottom:10px;
-margin-bottom:40px;
+color:#c084fc;
+
 }
 
 .grid{
+
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:30px;
+
 }
 
 .card{
-border:1px solid #6b21a8;
-padding:25px;
-background:#0b0415;
-box-shadow:0 0 20px #7e22ce22;
+
+border:1px solid #7e22ce;
+padding:20px;
+background:#0a0114;
+
 }
 
 .card h3{
+
 margin-top:0;
-color:#e9d5ff;
+
 }
 
-.card p{
-color:#c4b5fd;
-}
+button{
 
-.card button{
-margin-top:15px;
 background:transparent;
-border:1px solid #9333ea;
-color:#d8b4fe;
+border:1px solid #c084fc;
+color:#c084fc;
 padding:8px 14px;
+margin-top:10px;
 cursor:pointer;
+
 }
 
-.card button:hover{
+button:hover{
+
 background:#7e22ce;
+
 }
 
 .sobre{
+
 max-width:700px;
+
 }
 
 footer{
+
 text-align:center;
 padding:40px;
-border-top:1px solid #6b21a8;
 color:#a78bfa;
-font-size:14px;
+
 }
 
-@media (max-width:800px){
-.grid{grid-template-columns:1fr}
-.hero h1{font-size:40px}
-}
+</style>
+</head>
 
-</style></head><body><div class="hero"><h1>PENUMBRA FILOSÓFICA</h1><p>escribir filosofía es explorar las penumbras</p><nav>
+<body>
+
+<div class="hero">
+
+<h1>PENUMBRA FILOSÓFICA</h1>
+
+<p>escribir filosofía es explorar las penumbras</p>
+
+<nav>
+
 <a href="#ensayos">Ensayos</a>
 <a href="#cuadernos">Cuadernos</a>
 <a href="#sobre">Sobre mí</a>
-</nav></div><section id="ensayos"><h2>Ensayos recientes</h2><div class="grid"><div class="card">
+
+</nav>
+
+</div>
+
+<section id="ensayos">
+
+<h2>Ensayos recientes</h2>
+
+<div class="grid">
+
+<div class="card">
+
 <h3>Realismo estructural y disposicionalismo</h3>
-<p>Un análisis del debate contemporáneo sobre la ontología de las propiedades.</p>
+
+<p>Un análisis del debate sobre la ontología de las propiedades.</p>
+
 <button>Leer ensayo</button>
-</div><div class="card">
+
+</div>
+
+<div class="card">
+
 <h3>El problema del sustrato categórico</h3>
-<p>Notas críticas sobre Bird y Chakravartty.</p>
+
+<p>Notas sobre Bird y Chakravartty.</p>
+
 <button>Leer ensayo</button>
-</div></div></section><section id="cuadernos"><h2>Cuadernos</h2><div class="grid"><div class="card">
+
+</div>
+
+</div>
+
+</section>
+
+<section id="cuadernos">
+
+<h2>Cuadernos</h2>
+
+<div class="grid">
+
+<div class="card">
+
 <h3>Notas sobre Merleau-Ponty</h3>
+
 <p>Fragmento — 3 min lectura</p>
-</div><div class="card">
+
+</div>
+
+<div class="card">
+
 <h3>Pensar con el cuerpo</h3>
+
 <p>Fragmento — 2 min lectura</p>
-</div></div></section><section id="sobre" class="sobre"><h2>Sobre mí</h2><p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="sobre" class="sobre">
+
+<h2>Sobre mí</h2>
+
+<p>
+
 Gastón Fernández — estudiante de Licenciatura en Filosofía.
-</p><p>
+
+</p>
+
+<p>
+
 Contacto: gastonfernandezfilo@gmail.com
-</p></section><footer>
-© Penumbra Filosófica
-</footer></body>
+
+</p>
+
+</section>
+
+<footer>
+
+Penumbra Filosófica
+
+</footer>
+
+</body>
 </html>
