@@ -30,7 +30,6 @@
       overflow-x: hidden;
     }
 
-    /* ── GRAIN OVERLAY ── */
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -40,7 +39,6 @@
       opacity: .45;
     }
 
-    /* ── HERO ── */
     .hero {
       position: relative;
       width: 100%;
@@ -62,7 +60,6 @@
         linear-gradient(180deg, #0a0814 0%, #130e20 50%, #0d0b14 100%);
     }
 
-    /* City silhouette via box-shadow columns */
     .hero-city {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -83,7 +80,6 @@
       opacity: .55;
     }
 
-    /* Light beams */
     .hero::after {
       content: '';
       position: absolute; top: 0; left: 50%;
@@ -132,7 +128,6 @@
       animation: fadeDown .9s .2s ease both;
     }
 
-    /* ── NAV ── */
     nav {
       position: relative; z-index: 10;
       display: flex;
@@ -168,14 +163,12 @@
     }
     nav a:hover::after { width: 60%; left: 20%; }
 
-    /* ── MAIN LAYOUT ── */
     main {
       max-width: 980px;
       margin: 0 auto;
       padding: 52px 24px 80px;
     }
 
-    /* ── TWO-COL ── */
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -188,7 +181,6 @@
       .two-col { grid-template-columns: 1fr; }
     }
 
-    /* ── SECTION HEADING ── */
     .section-heading {
       font-family: 'Cinzel', serif;
       font-size: 1.05rem;
@@ -200,7 +192,6 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* ── CARDS ── */
     .card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -252,7 +243,6 @@
       color: var(--accent2);
     }
 
-    /* ── CUADERNOS LIST ── */
     .cuadernos-list { display: flex; flex-direction: column; gap: 0; }
 
     .cuaderno-item {
@@ -260,12 +250,17 @@
       border: 1px solid var(--border);
       border-bottom: none;
       background: var(--card);
-      transition: background .2s;
+      transition: background .2s, border-color .2s;
       cursor: pointer;
+      text-decoration: none;
+      display: block;
     }
     .cuaderno-item:first-child { border-radius: 4px 4px 0 0; }
     .cuaderno-item:last-child  { border-bottom: 1px solid var(--border); border-radius: 0 0 4px 4px; }
-    .cuaderno-item:hover { background: rgba(40,28,68,0.9); }
+    .cuaderno-item:hover {
+      background: rgba(40,28,68,0.9);
+      border-color: rgba(160,100,220,0.45);
+    }
 
     .cuaderno-title {
       font-family: 'Cinzel', serif;
@@ -280,7 +275,6 @@
       letter-spacing: .04em;
     }
 
-    /* ── FILOSOFIA Y FICCION ── */
     .ficcion-section {
       animation: fadeUp .8s .7s ease both;
     }
@@ -329,7 +323,6 @@
         linear-gradient(180deg, #1a0d30 0%, #0d0820 100%);
     }
 
-    /* Iron Throne SVG-ish silhouette via CSS */
     .throne-silhouette {
       position: absolute;
       bottom: 60px; left: 50%;
@@ -337,7 +330,6 @@
       width: 260px; height: 200px;
       opacity: .55;
     }
-
     .throne-silhouette svg { width: 100%; height: 100%; }
 
     .ficcion-header {
@@ -384,14 +376,12 @@
       color: var(--accent2);
     }
 
-    /* ── GLOW DOTS (decorative) ── */
     .glow-dot {
       position: absolute;
       border-radius: 50%;
       pointer-events: none;
     }
 
-    /* ── ANIMATIONS ── */
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-18px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -401,7 +391,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── SOBRE MÍ ── */
     .sobre-section {
       margin-top: 64px;
       animation: fadeUp .8s .9s ease both;
@@ -475,7 +464,6 @@
     }
     .sobre-mail svg { opacity: .7; }
 
-    /* ── FOOTER ── */
     footer {
       text-align: center;
       padding: 28px;
@@ -488,14 +476,12 @@
 </head>
 <body>
 
-<!-- ── HERO ── -->
 <header class="hero">
   <div class="hero-bg"></div>
   <div class="hero-city"></div>
   <div class="beam"></div><div class="beam"></div><div class="beam"></div>
   <div class="beam"></div><div class="beam"></div>
 
-  <!-- decorative glow dots -->
   <div class="glow-dot" style="width:4px;height:4px;background:#e0aaff;top:18%;left:22%;box-shadow:0 0 8px 4px #b06aff;opacity:.7;"></div>
   <div class="glow-dot" style="width:3px;height:3px;background:#ffccff;top:28%;left:76%;box-shadow:0 0 6px 3px #cc80ff;opacity:.6;"></div>
   <div class="glow-dot" style="width:5px;height:5px;background:#d080ff;top:12%;left:55%;box-shadow:0 0 10px 5px #9040d0;opacity:.5;"></div>
@@ -506,17 +492,14 @@
   </div>
 </header>
 
-<!-- ── NAV ── -->
 <nav>
   <a href="#ensayos">Ensayos</a>
   <a href="#cuadernos">Cuadernos</a>
   <a href="#sobre">Sobre mí</a>
 </nav>
 
-<!-- ── MAIN ── -->
 <main>
 
-  <!-- Two-column: Ensayos + Cuadernos -->
   <div class="two-col">
 
     <!-- Ensayos Recientes -->
@@ -526,13 +509,19 @@
       <div class="card">
         <div class="card-title">Realismo estructural y disposicionalismo</div>
         <p class="card-desc">Un análisis del debate sobre la ontología de las propiedades.</p>
-        <a href="https://drive.google.com/file/d/11rV7YeV_ExsPSeKSASoEeIG_XaXX5p9D/view?usp=drivesdk" class="btn-link">Leer ensayo →</a>
+        <a href="https://drive.google.com/file/d/11rV7YeV_ExsPSeKSASoEeIG_XaXX5p9D/view?usp=drivesdk" target="_blank" class="btn-link">Leer ensayo →</a>
       </div>
 
       <div class="card">
         <div class="card-title">Abducción e inferencia a la mejor explicación</div>
         <p class="card-desc">Una distinción conceptual.</p>
-        <a href="https://drive.google.com/file/d/1dxQ0wI8HtN1WQtQBK-8P1hZWjYL8GR6f/view?usp=drivesdk" class="btn-link">Leer ensayo →</a>
+        <a href="https://drive.google.com/file/d/1dxQ0wI8HtN1WQtQBK-8P1hZWjYL8GR6f/view?usp=drivesdk" target="_blank" class="btn-link">Leer ensayo →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Árbol y Rizoma</div>
+        <p class="card-desc">Ontología, política y pensamiento en Deleuze y Guattari.</p>
+        <a href="https://drive.google.com/file/d/1ePJZi2Q_douRn4-va-CDAOFM4CilBiHJ/view?usp=drivesdk" target="_blank" class="btn-link">Leer ensayo →</a>
       </div>
     </div>
 
@@ -541,22 +530,22 @@
       <h2 class="section-heading">Cuadernos</h2>
 
       <div class="cuadernos-list">
-        <div class="cuaderno-item">
+        <a href="https://drive.google.com/file/d/1kM0_bJq1PtL-PMckO_Px1iVVodUtAGXf/view?usp=drivesdk" target="_blank" class="cuaderno-item">
           <div class="cuaderno-title">El narrador</div>
           <div class="cuaderno-meta">Experiencia, tradición y declive de la narración oral</div>
-        </div>
-        <div class="cuaderno-item">
+        </a>
+        <a href="https://drive.google.com/file/d/19doDzJU_TmtSFU5-beuIFT5FwyBHx4wI/view?usp=drivesdk" target="_blank" class="cuaderno-item">
           <div class="cuaderno-title">La obra de arte en la época de la reproductibilidad técnica</div>
           <div class="cuaderno-meta">Aura, valor cultual y politización del arte</div>
-        </div>
-        <div class="cuaderno-item">
+        </a>
+        <div class="cuaderno-item" style="cursor: default; opacity: .6;">
           <div class="cuaderno-title">Apunte sobre poderes causales</div>
           <div class="cuaderno-meta">Fragmento — 2 min lectura</div>
         </div>
       </div>
     </div>
 
-  </div><!-- /two-col -->
+  </div>
 
   <!-- Filosofía y Ficción -->
   <div class="ficcion-section">
@@ -565,10 +554,8 @@
     <div class="ficcion-card">
       <div class="ficcion-card-bg"></div>
 
-      <!-- Iron Throne silhouette in CSS/SVG -->
       <div class="throne-silhouette">
         <svg viewBox="0 0 260 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Spikes -->
           <g fill="rgba(80,30,120,0.75)">
             <polygon points="130,10 122,80 138,80"/>
             <polygon points="110,18 108,82 120,82"/>
@@ -580,16 +567,9 @@
             <polygon points="65,55 72,88 80,88"/>
             <polygon points="195,55 180,88 188,88"/>
           </g>
-          <!-- Throne body -->
-          <path d="M60 86 Q80 78 130 76 Q180 78 200 86 L190 160 Q130 175 70 160 Z"
-                fill="rgba(50,20,90,0.85)"/>
-          <!-- seat detail -->
-          <path d="M80 110 Q130 100 180 110 L175 140 Q130 150 85 140 Z"
-                fill="rgba(70,30,110,0.6)"/>
-          <!-- base -->
-          <path d="M70 158 Q130 168 190 158 L200 185 Q130 196 60 185 Z"
-                fill="rgba(40,15,75,0.9)"/>
-          <!-- glow beneath throne -->
+          <path d="M60 86 Q80 78 130 76 Q180 78 200 86 L190 160 Q130 175 70 160 Z" fill="rgba(50,20,90,0.85)"/>
+          <path d="M80 110 Q130 100 180 110 L175 140 Q130 150 85 140 Z" fill="rgba(70,30,110,0.6)"/>
+          <path d="M70 158 Q130 168 190 158 L200 185 Q130 196 60 185 Z" fill="rgba(40,15,75,0.9)"/>
           <ellipse cx="130" cy="188" rx="80" ry="8" fill="rgba(130,50,200,0.3)" filter="url(#glow)"/>
           <defs>
             <filter id="glow" x="-50%" y="-200%" width="200%" height="500%">
@@ -599,7 +579,6 @@
         </svg>
       </div>
 
-      <!-- purple mist glow behind throne -->
       <div style="position:absolute;bottom:40px;left:50%;transform:translateX(-50%);width:300px;height:120px;background:radial-gradient(ellipse,rgba(140,50,220,0.35),transparent 70%);pointer-events:none;"></div>
 
       <div class="ficcion-header">
